@@ -1,0 +1,17 @@
+use seguradora
+--usar o banco
+
+drop database seguradora
+--apagar o banco
+
+create database Controle_Pecas
+--criar o banco
+
+use Controle_Pecas
+--colocar o banco em uso
+
+create table Departamento (
+cod_depto int primary key ,
+setor varchar(50) not null)
+--criar a tabela 
+

@@ -1,0 +1,114 @@
+UC10 - Banco de Dados
+
+
+-- Instru��o que cria um Banco de Dados
+create database testeti39;
+
+---------------------------------------------------------------------------------------------------------
+
+CREATE DATABASE virtualdcTI39;
+-- DROP DATABASE <banco> elimina o Banco "banco"
+DROP DATABASE virtualdc;
+-- A instru��o USE coloca o Banco de Dados em uso
+use virtualdcTI39;
+-- Cria��o de Tabelas:  CREATE TABLE (
+-- <coluna><tipo_coluna> [NULL/NOT NULL] [PRIMARY KEY])
+create table cadfun(
+	codfun int not null primary key,
+	nome varchar(50) not null,
+	depto char(2) not null,
+	funcao char(20) not null,
+	salario decimal(10,2) not null
+);
+
+---------------------------------------------------------------------------------------------------------
+
+USE virtualdcTI39;
+
+-- Inser��o de Registros se faz com o comando INSERT INTO
+-- INSERT INTO <tabela(campo1, campo2, ... ,campoN)>
+-- VALUES <(valor1, valor2, ..., valorN)>
+
+insert into cadfun(codfun,nome,depto,funcao,salario)
+values(12,'Carlos Alberto','3','Vendedor',3530.00);
+
+select * from cadfun;
+
+insert into cadfun(codfun,nome,depto,funcao,salario)
+values(15,'Marcos Henrique','2','Gerente',7985.75);
+
+insert into cadfun(codfun,nome,depto,funcao,salario)
+values(7,'Aparecida da Silva','3','Secret�ria',3978.52);
+
+insert into cadfun(codfun,nome,depto,funcao,salario)
+values(9,'Solange Pacheco','5','Supervisora',5963.57);
+
+insert into cadfun(codfun,nome,depto,funcao,salario)
+values(6,'Marcelo Souza','3','Analista',6250.96);
+
+insert into cadfun(codfun,nome,depto,funcao,salario)
+values(1,'C�lia Nascimento','2','Secret�ria',3978.52);
+
+select * from cadfun;
+
+insert into cadfun values(2,'Ritalina de Macedo', '3', 'Programador',5555.55);
+insert into cadfun values(5,'Augusto de Souza', '3', 'Programador',5555.55);
+insert into cadfun values(4,'Carlos Santos', '5', 'Vendedor',3530.67);
+insert into cadfun values(25,'Pedro Silva', '3', 'Supervisor',5963.57);
+insert into cadfun values(3,'Ana Bastos', '3', 'Vendedora',3530.67);
+insert into cadfun values(10,'Paulo da Silva', '2', 'Vendedor',3530.67);
+
+select * from cadfun;
+
+
+---------------------------------------------------------------------------------------------------------
+
+use virtualdcTI39;
+-- Comando SELECT e suas variantes
+-- Sintaxe:
+-- SELECT [DISTINCT] <campos> FROM <tabela>  [condi��o];
+
+select * from cadfun;
+select nome from cadfun;
+select nome, funcao from cadfun;
+--WHERE � uma condi��o (ONDE)
+select nome from cadfun where depto='3';
+--ORDER BY significa ORDENADO POR
+select nome, salario from cadfun order by nome;
+--DESC significa ordenar descendentemente
+select nome, salario from cadfun order by nome DESC;
+select depto, nome from cadfun order by depto, nome desc;
+select nome from cadfun where depto='3' order by nome;
+
+
+---------------------------------------------------------------------------------------------------------
+
+
+use virtualdcTI39;
+-- Altera��o de tabelas - pode ser feito ao longo do tempo
+-- devido a uma ou mais necessidades espec�ficas(incluir campo, retirar campo ou modificar a estrutura da tabela)
+-- ALTER TABLE <tabela> <opera��o> [;]
+-- Sendo que podemos receber os valores, na opera��o:
+-- ADD <campo><tipo> - inserir um novo campo na tabela
+-- DROP <campo> - remover um campo de uma tabela
+select * from cadfun;
+
+alter table cadfun add admissao date;
+select * from cadfun;
+update cadfun set admissao='15-01-2015' where codfun = 1;
+update cadfun set admissao='21-10-2016' where codfun = 2;
+update cadfun set admissao='21-10-2018' where codfun = 3;
+update cadfun set admissao='26-04-2020' where codfun = 4;
+update cadfun set admissao='15-12-2021' where codfun = 5;
+update cadfun set admissao='21-12-2021' where codfun = 7;
+update cadfun set admissao='21-12-2021' where codfun = 9;
+update cadfun set admissao='06-05-2022' where codfun = 10;
+update cadfun set admissao='14-09-2021' where codfun = 12;
+update cadfun set admissao='04-02-2022' where codfun = 15;
+update cadfun set admissao='06-05-2023' where codfun = 25;
+select * from cadfun;
+-- MONTH(data) nos fornece o m�s da data
+select codfun, nome,admissao from cadfun where month(admissao)=12;
+
+select codfun, nome, admissao from cadfun where admissao='06-05-2023';
+
